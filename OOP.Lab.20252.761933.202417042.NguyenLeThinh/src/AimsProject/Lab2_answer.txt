@@ -1,0 +1,15 @@
+Section 15:
+    Câu hỏi 15.1: JAVA là ngôn ngữ truyền tham trị (Pass by Value) hay truyền tham chiếu (Pass by Reference)?
+Trả lời: Java LUÔN LUÔN là ngôn ngữ Truyền tham trị (Pass by Value).
+Giải thích: Khi một đối tượng được truyền vào phương thức, Java không truyền chính đối tượng đó hay biến gốc. Thay vào đó, nó tạo ra và truyền đi một bản sao của giá trị tham chiếu (tức là bản sao của địa chỉ ô nhớ) trỏ tới đối tượng đó.
+
+    Câu hỏi 15.2: Sau khi gọi hàm swap(jungleDVD, cinderellaDVD), tại sao tiêu đề (title) của hai đối tượng này vẫn giữ nguyên (không bị tráo đổi)?
+Trả lời: Bởi vì hàm swap chỉ thực hiện tráo đổi các bản sao cục bộ của tham chiếu bên trong phạm vi của hàm đó.
+Giải thích: Do Java là Pass by Value, hàm swap nhận được bản sao địa chỉ ô nhớ của jungleDVD và cinderellaDVD. Việc tráo đổi các bản sao này chỉ làm thay đổi việc các biến cục bộ (o1, o2) trỏ đi đâu bên trong hàm, nó hoàn toàn không tác động đến các biến gốc ở hàm main. Vì vậy, hai đối tượng gốc vẫn nằm nguyên tại vị trí cũ.
+
+    Câu hỏi 15.3: Sau khi gọi hàm changeTitle(jungleDVD, cinderellaDVD.getTitle()), tại sao tiêu đề của jungleDVD lại bị thay đổi?
+Trả lời: Bởi vì hàm này đã sử dụng tham chiếu để truy cập và sửa đổi trực tiếp trạng thái nội bộ (thuộc tính) của đối tượng thực sự trên bộ nhớ Heap.
+Giải thích: Mặc dù hàm nhận được một bản sao của tham chiếu (dvd), nhưng bản sao này vẫn trỏ tới cùng một địa chỉ ô nhớ với biến jungleDVD gốc. Khi lệnh dvd.setTitle(title) được thực thi, nó thay đổi giá trị thuộc tính title ngay tại vùng nhớ của đối tượng đó. Do đó, sự thay đổi này có hiệu lực trên toàn hệ thống.
+(Lưu ý: Dòng lệnh dvd = new DigitalVideoDisc(oldTitle) ở cuối hàm chỉ làm thay đổi bản sao cục bộ, không ảnh hưởng đến đối tượng gốc).
+KẾT LUẬN:
+Trong Java, chúng ta không thể tráo đổi vị trí của hai đối tượng bằng cách tráo đổi tham chiếu của chúng trong một phương thức, nhưng chúng ta có thể thay đổi dữ liệu bên trong đối tượng đó thông qua các phương thức setter (vì các tham chiếu cùng trỏ về một thực thể đối tượng trên bộ nhớ).

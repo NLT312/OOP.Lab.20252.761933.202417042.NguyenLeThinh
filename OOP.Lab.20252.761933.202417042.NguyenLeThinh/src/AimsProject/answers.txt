@@ -1,0 +1,31 @@
+1.
+Trong đoạn code của đề bài, phương thức JOptionPane.showConfirmDialog được sử dụng. Khi người dùng nhấn nút Cancel (hoặc đóng cửa sổ bằng dấu X):
+
+Giá trị trả về: Biến option sẽ nhận giá trị là 2 (tương ứng với hằng số JOptionPane.CANCEL_OPTION). Nếu đóng cửa sổ, nó trả về -1 (JOptionPane.CLOSED_OPTION).
+
+Kết quả hiển thị: Trong dòng lệnh showConfirmDialog tiếp theo, biểu thức điều kiện option == JOptionPane.YES_OPTION sẽ là false. Do đó, chương trình sẽ hiển thị thông báo: "You've chosen: No".
+
+2. Cách tùy chỉnh các tùy chọn (ví dụ: chỉ có "Yes"/"No" hoặc "I do"/"I don't")
+   Để tùy chỉnh các nút bấm, sử dụng các tham số mở rộng của phương thức showConfirmDialog hoặc showOptionDialog.
+
+   Trường hợp 1: Chỉ hiển thị "Yes" và "No"
+   Thay vì dùng mặc định (thường có 3 nút Yes/No/Cancel), có thể thêm tham số optionType:
+
+   Java
+   int option = JOptionPane.showConfirmDialog(null,
+       "Do you want to change to the first class ticket?",
+       "Select an Option",
+       JOptionPane.YES_NO_OPTION);
+   Trường hợp 2: Tùy chỉnh nhãn nút bấm (ví dụ: "I do" và "I don't")
+   Sử dụng JOptionPane.showOptionDialog :
+
+   Java
+   Object[] options = {"I do", "I don't"};
+   int n = JOptionPane.showOptionDialog(null,
+       "Do you agree with the terms?",
+       "A Silhouette Query",
+       JOptionPane.YES_NO_OPTION,
+       JOptionPane.QUESTION_MESSAGE,
+       null,
+       options,
+       options[0]);
