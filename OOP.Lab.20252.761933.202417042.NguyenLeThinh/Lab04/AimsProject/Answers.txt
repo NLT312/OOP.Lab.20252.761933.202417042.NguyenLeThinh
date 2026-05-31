@@ -1,0 +1,23 @@
+1. What class should implement the Comparable interface?
+Answer:
+Media should implement Comparable<Media>, because the cart stores different media types as Media objects.
+
+
+2. How should compareTo() be implemented?
+Answer:
+If we use natural ordering by title then cost, compareTo() should compare title alphabetically first.
+If the titles are equal, it should compare cost in decreasing order.
+
+
+3. Can we have two ordering rules if we use Comparable?
+Answer:
+No. Comparable defines only one natural ordering for a class.
+To support multiple ordering rules, such as sorting by title then cost and sorting by cost then title, Comparator is more suitable.
+
+
+4. Suppose DVDs have a different ordering rule from other media types, by title, then decreasing length, then cost. How would we modify the code?
+Answer:
+We should use Comparator.
+We can create a specific Comparator for DigitalVideoDisc, or modify a Media comparator to check whether both objects are DigitalVideoDisc.
+If both are DVDs, compare title first, then length in decreasing order, then cost.
+For other media types, use the normal ordering rule.

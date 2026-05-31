@@ -60,7 +60,7 @@ public class Cart {
             System.out.println("No item with ID " + id + " found in cart.");
         }
     }
-//
+
     public void searchTitle(String title) {
         boolean found = false;
         for (Media m : itemsOrdered) {
@@ -69,7 +69,6 @@ public class Cart {
                 found = true;
             }
         }
-        //
         if (!found) {
             System.out.println("No item with title containing '" + title + "' found in cart.");
         }
@@ -94,6 +93,11 @@ public class Cart {
         System.out.println("Cart sorted by cost-title.");
     }
 
+    public List<Media> getItems() {
+        return new ArrayList<>(itemsOrdered);
+    }
+
+    public void clear() {
     public List<Media> getItems() {
         return new ArrayList<>(itemsOrdered);
     }
