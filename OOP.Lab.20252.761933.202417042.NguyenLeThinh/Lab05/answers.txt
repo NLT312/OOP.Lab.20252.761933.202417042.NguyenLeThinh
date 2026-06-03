@@ -1,0 +1,45 @@
+=== OOP Lab 05 — Answers ===
+Student : Bui Ngoc Trung
+ID      : 202417058
+
+------------------------------------------------------------
+Section 14: Exception Hierarchical Tree (draw exception hierarchy)
+------------------------------------------------------------
+java.lang.Object
+  └── java.lang.Throwable
+        ├── java.lang.Error
+        └── java.lang.Exception
+              ├── java.lang.RuntimeException
+              │     └── (unchecked exceptions...)
+              └── hust.soict.hedspi.aims.exception.PlayerException
+              └── hust.soict.hedspi.aims.exception.LimitExceededException
+
+------------------------------------------------------------
+Section 9: Which methods throw exceptions and why?
+------------------------------------------------------------
+- DigitalVideoDisc.play() throws PlayerException when length <= 0
+- Track.play()           throws PlayerException when length <= 0
+- CompactDisc.play()     throws PlayerException when length <= 0
+Reason: A media item with non-positive length cannot be played meaningfully.
+
+------------------------------------------------------------
+Section 10: Checked vs Unchecked Exception
+------------------------------------------------------------
+- PlayerException extends Exception → it is a CHECKED exception.
+- The compiler forces callers to handle it with try-catch or declare throws.
+- This is appropriate because an invalid media length is a recoverable,
+  foreseeable error that the UI should handle gracefully.
+
+------------------------------------------------------------
+Section 12: equals() and compareTo()
+------------------------------------------------------------
+equals():
+- Two Media objects are equal if they have the same title (case-insensitive).
+- hashCode() is overridden alongside equals() to maintain the
+  general contract: equal objects must have the same hash code.
+
+compareTo():
+- Media objects are sorted first by title (case-insensitive),
+  then by category (case-insensitive) as a tiebreaker.
+- This allows Collections.sort() and TreeSet to order media
+  alphabetically by title.

@@ -1,0 +1,122 @@
+READING ASSIGNMENT - LAB03
+Student: Bui Ngoc Trung
+Student ID: 202417058
+
+================================================================
+Question 1: What are the advantages of Polymorphism?
+================================================================
+
+1. Code flexibility and reusability:
+   Polymorphism allows one interface to be used for different 
+   data types. We can write code that works with objects of 
+   different classes through a common interface, reducing 
+   code duplication.
+
+2. Extensibility:
+   New classes can be added with minimal changes to existing 
+   code. For example, in our AIMS project, we can add new 
+   Media types (Book, CD, DVD) without changing the Cart or 
+   Store classes - they work with any Media object.
+
+3. Maintainability:
+   Code is easier to maintain because changes to one class 
+   do not affect others as long as they follow the same 
+   interface/superclass contract.
+
+4. Simplifies code:
+   Instead of writing separate methods for each type 
+   (addBook, addDVD, addCD), we write one method (addMedia) 
+   that handles all types through polymorphism.
+
+Example from AIMS project:
+   - Cart.addMedia(Media m) accepts DVD, Book, or CD
+   - Each object calls its own toString() method when printed
+
+================================================================
+Question 2: How is Inheritance useful to achieve Polymorphism 
+            in Java?
+================================================================
+
+Inheritance is the foundation of polymorphism in Java:
+
+1. Method Overriding:
+   Child classes inherit methods from parent class and can 
+   override them to provide specific behavior. For example:
+   - Media class has toString() method
+   - DigitalVideoDisc overrides toString() to show DVD info
+   - Book overrides toString() to show Book info
+   - CompactDisc overrides toString() to show CD info
+
+2. Reference substitution (Liskov Substitution Principle):
+   A parent class reference can point to a child class object.
+   Example:
+      Media m = new DigitalVideoDisc("The Lion King",...);
+      Media b = new Book("Harry Potter",...);
+      Media c = new CompactDisc("Thriller",...);
+   
+   When we call m.toString(), Java automatically calls the 
+   correct toString() based on the actual object type - 
+   this is Runtime Polymorphism (Dynamic Dispatch).
+
+3. Single interface, multiple implementations:
+   In AIMS project, the Playable interface defines play().
+   Both DigitalVideoDisc and CompactDisc implement play() 
+   differently through inheritance chain.
+
+4. ArrayList<Media> stores different types:
+   Because DVD, Book, CD all extend Media, we can store 
+   them all in one ArrayList<Media> and process them 
+   uniformly using loops.
+
+================================================================
+Question 3: What are the differences between Polymorphism 
+            and Inheritance in Java?
+================================================================
+
+INHERITANCE:
+- Definition: Mechanism where a child class acquires 
+  properties and behaviors of a parent class
+- Purpose: Code reuse - child class reuses parent's fields 
+  and methods
+- Relationship: "IS-A" relationship 
+  (DigitalVideoDisc IS-A Media)
+- Direction: One-way, from parent to child
+- Example in AIMS:
+  * Media -> Disc -> DigitalVideoDisc
+  * Media -> Disc -> CompactDisc  
+  * Media -> Book
+  * DigitalVideoDisc inherits id, title, category, cost 
+    from Media
+
+POLYMORPHISM:
+- Definition: Ability of an object to take many forms; 
+  same method behaves differently based on object type
+- Purpose: Flexibility - same code works with different 
+  object types
+- Relationship: Based on method overriding/overloading
+- Types: 
+  * Compile-time (method overloading)
+  * Runtime (method overriding - used in AIMS)
+- Example in AIMS:
+  * toString() called on Media reference prints different 
+    output depending on whether it's DVD, Book, or CD
+  * play() behaves differently for DVD vs CompactDisc
+
+KEY DIFFERENCES:
++------------------+------------------+------------------+
+|    Aspect        |   Inheritance    |  Polymorphism    |
++------------------+------------------+------------------+
+| What it does     | Reuses code      | Changes behavior |
+| When resolved    | Compile time     | Runtime          |
+| Requires         | extends keyword  | Overriding method|
+| Purpose          | Code reuse       | Flexibility      |
+| Relationship     | Parent-Child     | Same interface   |
++------------------+------------------+------------------+
+
+CONCLUSION:
+Inheritance and Polymorphism work together in Java OOP.
+Inheritance provides the structure (class hierarchy) while
+Polymorphism provides the behavior (method overriding).
+Without Inheritance, Runtime Polymorphism cannot exist.
+In AIMS project, we use both: Media hierarchy (Inheritance)
+allows Cart to handle all media types uniformly (Polymorphism).
